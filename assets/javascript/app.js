@@ -1,3 +1,5 @@
+ $(document).ready(function() {
+
  // Initialize Firebase
   var config = {
     apiKey: "AIzaSyDhx7HjwECIL0Xi_AdHPzR4mIqAt0NmDp8",
@@ -19,14 +21,20 @@
 
     var today = moment().format('hh:mm')
     var secondHours = parseInt(today.substring(0, 2));
+    if (secondHours < 13) {
+      secondHours += 12;
+    }
+
     var secondMinutes = parseInt(today.substring(3, 5));
     var secondInMin = (secondHours * 60) + secondMinutes;
 
     var timeSinceFirst = secondInMin - firstInMin;
 
-    var trains = Math.round((timeSinceFirst)/trainFrequency, 0)
+    var trains = Math.round(timeSinceFirst / trainFrequency);
+    console.log(timeSinceFirst)
+    console.log(trainFrequency)
 
-    minutesAway = trainFrequency - (timeSinceFirst % trains);
+    var minutesAway = timeSinceFirst % trainFrequency;
 
     nextArrival = moment().add(minutesAway, 'minutes').calendar();
 
@@ -40,14 +48,14 @@
   })
   }
 
-  var trainName = "";
-  var trainDestination = "";
-  var trainFrequency = "";
-  var firstTrain = "";
-  var nextArrival ="";
-  var minutesAway = "";
+    var trainName = "";
+    var trainDestination = "";
+    var trainFrequency = "";
+    var firstTrain = "";
+
 
 $("#newTrain").on("click", e => {
+
   event.preventDefault();
 
   trainName = $("#trainName").val().trim();
@@ -57,10 +65,10 @@ $("#newTrain").on("click", e => {
 
   calculateTrains();
 
-  console.log(minutesAway)
 })
 
 db.ref().on("child_added", childsnapshot => {
+  
   var newRow = $("<tr>");
 
   var trainName = $("<td scope='col'>").text(childsnapshot.val().trainName);
@@ -80,7 +88,7 @@ db.ref().on("child_added", childsnapshot => {
 })
 
 
-
+})
 
   
 

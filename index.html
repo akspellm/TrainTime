@@ -12,6 +12,13 @@
 	</head>
 
 		<div class="container">
+			<div class="jumbotron">
+				<h1>Calculate your train!</h1>
+				<p>Enter your train's details on the form below to see when your next train will arrive</p>
+			</div>
+
+			<hr>
+
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -27,6 +34,8 @@
 				</tbody>
 
 			</table>
+
+			<hr>
 
 <form class="form-horizontal">
     <div class="form-group">
@@ -48,7 +57,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="firstTrain" class="col-sm-2 control-label">First Train</label>
+        <label for="firstTrain" class="col-sm-2 control-label">First Train (hh:mm)</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="firstTrain" placeholder="FirstTrain">
         </div>
@@ -56,7 +65,7 @@
     
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default" id="newTrain">Sign in</button>
+            <button type="submit" class="btn btn-default" id="newTrain">Calculate</button>
         </div>
     </div>
 </form>
